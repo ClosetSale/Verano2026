@@ -278,7 +278,34 @@ select:focus{outline:none; border-color:var(--brand-500); box-shadow:0 0 0 3px v
 .toast.in{opacity:1; transform:none}
 .toast.good{background:var(--ok)}
 
-footer{padding:32px 0 40px; border-top:1px solid var(--sand-200); text-align:center; color:var(--ink-faint); font-size:12.5px}
+/* ---------- FAQs ---------- */
+.faqs{max-width:720px; margin:64px auto 8px}
+.faqs h2{font-family:var(--serif); font-size:26px; text-align:center; margin:0 0 24px; letter-spacing:-.01em}
+.faqs details{
+  background:#fff; border:1px solid var(--sand-200); border-radius:var(--radius);
+  margin-bottom:10px; overflow:hidden; box-shadow:var(--shadow-sm);
+}
+.faqs summary{
+  padding:16px 46px 16px 18px; font-size:15px; font-weight:600; cursor:pointer;
+  position:relative; list-style:none; transition:background .15s;
+}
+.faqs summary::-webkit-details-marker{display:none}
+.faqs summary:hover{background:var(--sand-50)}
+.faqs summary::after{
+  content:""; position:absolute; right:20px; top:50%; width:9px; height:9px;
+  border-right:2px solid var(--brand-600); border-bottom:2px solid var(--brand-600);
+  transform:translateY(-70%) rotate(45deg); transition:transform .2s;
+}
+.faqs details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faqs details[open] summary{background:var(--brand-50)}
+.faqs details > p, .faqs details > ul{
+  margin:0; padding:2px 18px 18px; color:var(--ink-soft); font-size:14px; line-height:1.65;
+}
+.faqs details > ul{padding-left:38px}
+.faqs details > ul li{margin-top:6px}
+.faqs strong{color:var(--ink); font-weight:600}
+
+footer{padding:32px 0 40px; border-top:1px solid var(--sand-200); text-align:center; color:var(--ink-faint); font-size:12.5px; margin-top:48px}
 footer p{margin:0}
 
 @media(max-width:560px){
@@ -318,8 +345,8 @@ footer p{margin:0}
   <div class="wrap hero-in">
     <div class="hero-copy">
       <span class="eyebrow">Moda sostenible · Segunda vida</span>
-      <h2>Prendas y accesorios únicos, salidos de nuestro clóset</h2>
-      <p>Todo en excelente estado y a precio de clóset. Toca cualquier artículo para ver el detalle y apártalo por WhatsApp.</p>
+      <h2>Prendas y accesorios para toda ocasión, salidos de nuestro clóset</h2>
+      <p>Todo cuidado, conservado y a precio de clóset. Toca cualquier artículo para ver el detalle y apártalo por WhatsApp.</p>
     </div>
     <div class="stats">
       <div class="stat"><b id="nTotal">0</b><span>Total</span></div>
@@ -331,32 +358,45 @@ footer p{margin:0}
 
 <main class="wrap">
   <div class="controls">
-    <div class="search">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input type="search" id="q" placeholder="Buscar por marca, prenda o color…" aria-label="Buscar prendas">
-    </div>
     <select id="fCat" aria-label="Filtrar por categoría"><option value="all">Todas las categorías</option></select>
     <select id="fSize" aria-label="Filtrar por talla"><option value="all">Todas las tallas</option></select>
-    <select id="fState" aria-label="Filtrar por disponibilidad">
-      <option value="all">Todos los estados</option>
-      <option value="Disponible">Disponible</option>
-      <option value="Apartado">Apartado</option>
-      <option value="Vendido">Vendido</option>
-    </select>
     <select id="fSort" aria-label="Ordenar">
       <option value="def">Orden sugerido</option>
       <option value="low">Precio: menor a mayor</option>
       <option value="high">Precio: mayor a menor</option>
     </select>
-    <button class="clear" id="clearBtn">Limpiar</button>
+    <button class="clear" id="clearBtn">Limpiar filtros</button>
   </div>
 
   <p class="count" id="count"></p>
   <div class="grid" id="grid"></div>
+
+  <section class="faqs" aria-labelledby="faqsTitle">
+    <h2 id="faqsTitle">Preguntas frecuentes</h2>
+
+    <details>
+      <summary>¿Puedo ver las prendas físicamente?</summary>
+      <p>No, pero puedes pedir todas las fotos que necesites. Abre la prenda que te interese y toca <strong>“Quiero ver más fotos”</strong>: nos llega tu mensaje por WhatsApp y te las mandamos.</p>
+    </details>
+
+    <details>
+      <summary>¿Cómo pago mi compra?</summary>
+      <p>Se aparta con el <strong>50%</strong> y el otro <strong>50%</strong> se cubre al momento del envío o la entrega. Puede ser por transferencia o en efectivo, según el método de entrega que elijas.</p>
+    </details>
+
+    <details>
+      <summary>¿Cómo y dónde recibo mi compra?</summary>
+      <p>Tienes dos opciones:</p>
+      <ul>
+        <li><strong>Uber Envío</strong>, con el costo por cuenta del comprador.</li>
+        <li><strong>Punto de encuentro:</strong> Bodega Aurrerá Francisco de Montejo.</li>
+      </ul>
+    </details>
+  </section>
 </main>
 
 <footer>
-  <div class="wrap"><p>Closet Sale · Los apartados se confirman por WhatsApp, por orden de llegada.</p></div>
+  <div class="wrap"><p>Closet Sale</p></div>
 </footer>
 
 <!-- Modal detalle -->
@@ -491,7 +531,8 @@ footer p{margin:0}
       if (it.talla && sizes.indexOf(it.talla) < 0) sizes.push(it.talla);
     });
     cats.sort();
-    var pref = ['XS','S','M','L','XL','Única'];
+    // Orden de tallas: de la más chica a la más grande, y al final las de calzado.
+    var pref = ['ECH','CH','M','G','23.5','24','Única'];
     sizes.sort(function(a,b){
       var ia = pref.indexOf(a), ib = pref.indexOf(b);
       if (ia > -1 && ib > -1) return ia - ib;
@@ -504,17 +545,11 @@ footer p{margin:0}
   }
 
   function visible(){
-    var q = $('q').value.trim().toLowerCase();
-    var cat = $('fCat').value, size = $('fSize').value, st = $('fState').value, sort = $('fSort').value;
+    var cat = $('fCat').value, size = $('fSize').value, sort = $('fSort').value;
 
     var out = items.filter(function(it){
       if (cat !== 'all' && it.categoria !== cat) return false;
       if (size !== 'all' && it.talla !== size) return false;
-      if (st !== 'all' && it.estado !== st) return false;
-      if (q){
-        var hay = [it.nombre,it.marca,it.categoria,it.descripcion,it.talla].join(' ').toLowerCase();
-        if (hay.indexOf(q) < 0) return false;
-      }
       return true;
     });
 
@@ -541,8 +576,8 @@ footer p{margin:0}
     if (!list.length){
       grid.innerHTML =
         '<div class="empty">' +
-          '<h3>No encontramos nada con esos filtros</h3>' +
-          '<p>Prueba con otra búsqueda o mira todo el clóset.</p>' +
+          '<h3>No hay nada con esos filtros</h3>' +
+          '<p>Prueba con otra categoría o talla, o mira todo el clóset.</p>' +
           '<button data-clear>Ver todo</button>' +
         '</div>';
       $('count').textContent = '';
@@ -574,7 +609,7 @@ footer p{margin:0}
               ? '<button class="add'+(inBag(it.id)?' on':'')+'" data-bag="'+esc(it.id)+'" aria-label="'+(inBag(it.id)?'Quitar de mi lista':'Añadir a mi lista')+'" aria-pressed="'+(inBag(it.id)?'true':'false')+'">' +
                   (inBag(it.id)
                     ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'
-                    : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>') +
+                    : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>') +
                 '</button>'
               : '') +
           '</div>' +
@@ -625,12 +660,18 @@ footer p{margin:0}
     $('mCond').textContent  = it.condicion;
     $('mDesc').textContent  = it.descripcion || 'Sin descripción.';
 
+    // Pedir más fotos: disponible en cualquier pieza que no esté vendida.
+    var masFotos = '<button class="ghost" data-fotos>' +
+        '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="14" height="14" rx="2"/><path d="M21 7v12a2 2 0 0 1-2 2H7"/><circle cx="8.5" cy="8" r="1.3"/><path d="m3.5 14 3.5-3 4 3.5"/></svg>' +
+        'Quiero ver más fotos</button>';
+
     var a = $('mActions');
     if (it.estado === 'Vendido'){
       a.innerHTML = '<div class="soldnote">Esta pieza ya se vendió</div>';
     } else if (it.estado === 'Apartado'){
-      a.innerHTML = '<div class="soldnote">Apartada — escríbeme y te aviso si se libera</div>' +
-                    '<button class="ghost" data-wa1>Preguntar por WhatsApp</button>';
+      a.innerHTML = '<div class="soldnote">Apartada — escríbenos y te avisamos si se libera</div>' +
+                    '<button class="ghost" data-wa1>Preguntar por WhatsApp</button>' +
+                    masFotos;
     } else {
       a.innerHTML =
         '<button class="wa" data-wa1>' +
@@ -639,7 +680,8 @@ footer p{margin:0}
         '</button>' +
         '<button class="ghost'+(inBag(it.id)?' on':'')+'" data-bagmodal>' +
           (inBag(it.id) ? 'Quitar de mi lista' : 'Añadir a mi lista') +
-        '</button>';
+        '</button>' +
+        masFotos;
     }
 
     var m = $('modal');
@@ -716,13 +758,22 @@ footer p{margin:0}
     }
     return 'https://wa.me/' + phone + '?text=' + encodeURIComponent(text);
   }
+  // Ficha de una prenda dentro del mensaje: que quede clarísimo cuál es.
+  function ficha(it, n){
+    return (n ? n + '. ' : '') + it.nombre + '\n' +
+           '   Marca: ' + it.marca + '  ·  Talla: ' + it.talla + '\n' +
+           '   Precio: ' + money(it.precio) + ' MXN\n' +
+           '   Clave: ' + it.id + '\n';
+  }
   function waOne(it){
-    var t = '¡Hola! Me interesa esta pieza de tu Closet Sale:\n\n' +
-            '• ' + it.nombre + '\n' +
-            '• Marca: ' + it.marca + '\n' +
-            '• Talla: ' + it.talla + '\n' +
-            '• Precio: ' + money(it.precio) + ' MXN\n\n' +
+    var t = '¡Hola! Quiero apartar esta pieza de su Closet Sale:\n\n' +
+            ficha(it) + '\n' +
             (it.estado === 'Apartado' ? '¿Se llegó a liberar?' : '¿Sigue disponible?');
+    var u = waLink(t);
+    if (u) window.open(u,'_blank','noopener');
+  }
+  function waFotos(it){
+    var t = '¡Hola! ¿Me pueden mandar más fotos de esta pieza?\n\n' + ficha(it);
     var u = waLink(t);
     if (u) window.open(u,'_blank','noopener');
   }
@@ -730,12 +781,12 @@ footer p{margin:0}
     var live = bag.map(byId).filter(Boolean);
     if (!live.length){ toast('Tu lista está vacía'); return; }
     var total = 0;
-    var t = '¡Hola! Me interesan estas piezas de tu Closet Sale:\n\n';
+    var t = '¡Hola! Quiero apartar estas ' + live.length + ' piezas de su Closet Sale:\n\n';
     live.forEach(function(it,i){
       total += Number(it.precio) || 0;
-      t += (i+1) + '. ' + it.nombre + ' — Talla ' + it.talla + ' (' + money(it.precio) + ')\n';
+      t += ficha(it, i+1) + '\n';
     });
-    t += '\nTotal estimado: ' + money(total) + ' MXN\n\n¿Me las puedes apartar?';
+    t += 'TOTAL: ' + money(total) + ' MXN\n\n¿Me las pueden apartar?';
     var u = waLink(t);
     if (u) window.open(u,'_blank','noopener');
   }
@@ -767,7 +818,8 @@ footer p{margin:0}
       });
       return;
     }
-    if (e.target.closest('[data-wa1]') && current) return waOne(current);
+    if (e.target.closest('[data-wa1]') && current)   return waOne(current);
+    if (e.target.closest('[data-fotos]') && current) return waFotos(current);
     if (e.target.closest('[data-bagmodal]') && current){
       toggleBag(current.id);
       var id = current.id;
@@ -794,13 +846,12 @@ footer p{margin:0}
   });
 
   function resetFilters(){
-    $('q').value = ''; $('fCat').value = 'all'; $('fSize').value = 'all';
-    $('fState').value = 'all'; $('fSort').value = 'def';
+    $('fCat').value = 'all'; $('fSize').value = 'all'; $('fSort').value = 'def';
     render();
   }
   $('clearBtn').addEventListener('click', resetFilters);
-  ['q','fCat','fSize','fState','fSort'].forEach(function(id){
-    $(id).addEventListener(id === 'q' ? 'input' : 'change', render);
+  ['fCat','fSize','fSort'].forEach(function(id){
+    $(id).addEventListener('change', render);
   });
 
   /* --- arranque --- */

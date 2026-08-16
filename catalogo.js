@@ -6,7 +6,7 @@
      id          identificador único, no se repite ni se reutiliza
      nombre      lo que ve la clienta como título
      marca       marca de la prenda
-     talla       "XS" "S" "M" "L" "XL" o número
+     talla       "ECH" "CH" "M" "G" o número (23.5, 24) para calzado
      categoria   debe coincidir con una de las de abajo
      precio      número, sin $ ni comas
      condicion   estado de uso
@@ -16,7 +16,10 @@
 
    Categorías válidas:
      Vestidos · Blusas y Tops · Pantalones y Jeans · Shorts y Faldas
-     Trajes de Baño · Chaquetas y Sacos · Calzado · Accesorios · Otros
+     Trajes de Baño · Chaquetas y Sacos · Zapatos · Otros
+
+   NOTA: el filtro de categorías y el de tallas se arman solos con lo que haya
+   en el catálogo. "Zapatos" aparecerá en el filtro en cuanto exista un par.
 
    Condiciones sugeridas:
      Nuevo con etiqueta · Nuevo sin etiqueta · Como nuevo
@@ -28,7 +31,7 @@ window.CATALOGO = [
     id: "vestido-azul-rey",
     nombre: "Vestido azul rey de tirantes cruzados",
     marca: "DSY Clean Only",
-    talla: "S",
+    talla: "CH",
     categoria: "Vestidos",
     precio: 450,
     condicion: "Excelente estado",
@@ -64,7 +67,7 @@ window.CATALOGO = [
     id: "top-crochet-naranja",
     nombre: "Top de crochet con flecos hecho a mano",
     marca: "Hecho a mano",
-    talla: "S",
+    talla: "CH",
     categoria: "Blusas y Tops",
     precio: 320,
     condicion: "Excelente estado",
@@ -76,7 +79,7 @@ window.CATALOGO = [
     id: "top-beige-ribete-negro",
     nombre: "Top texturizado beige con ribete negro",
     marca: "Sin marca",
-    talla: "S",
+    talla: "CH",
     categoria: "Blusas y Tops",
     precio: 180,
     condicion: "Buen estado",
@@ -124,7 +127,7 @@ window.CATALOGO = [
     id: "blusa-mostaza-mono",
     nombre: "Blusa amarilla mostaza con moño al frente",
     marca: "Sin marca",
-    talla: "S",
+    talla: "CH",
     categoria: "Blusas y Tops",
     precio: 250,
     condicion: "Excelente estado",
@@ -148,7 +151,7 @@ window.CATALOGO = [
     id: "playera-amarilla-borlas",
     nombre: "Playera amarilla con borlas de colores",
     marca: "RWIND",
-    talla: "S",
+    talla: "CH",
     categoria: "Blusas y Tops",
     precio: 200,
     condicion: "Buen estado",
@@ -161,7 +164,7 @@ window.CATALOGO = [
     nombre: "Bolsa de tela de rayas blanco y negro",
     marca: "Sin marca",
     talla: "Única",
-    categoria: "Accesorios",
+    categoria: "Otros",
     precio: 150,
     condicion: "Excelente estado",
     estado: "Disponible",
@@ -173,4 +176,4 @@ window.CATALOGO = [
 /* Número de WhatsApp que recibe los pedidos.
    Formato: código de país + número, sin +, sin espacios ni guiones.
    México: 52 + 1 + los 10 dígitos.  Ejemplo: 5219991234567 */
-window.WHATSAPP = "PENDIENTE";
+window.WHATSAPP = "5215554037421";
