@@ -656,7 +656,7 @@ footer p{margin:0}
     $('mCat').textContent   = it.categoria;
     $('mTitle').textContent = it.nombre;
     $('mPrice').textContent = money(it.precio) + ' MXN';
-    $('mSize').textContent  = it.talla;
+    $('mSize').textContent  = it.tallaDetalle || it.talla;
     $('mCond').textContent  = it.condicion;
     $('mDesc').textContent  = it.descripcion || 'Sin descripción.';
 
@@ -761,7 +761,7 @@ footer p{margin:0}
   // Ficha de una prenda dentro del mensaje: que quede clarísimo cuál es.
   function ficha(it, n){
     return (n ? n + '. ' : '') + it.nombre + '\n' +
-           '   Marca: ' + it.marca + '  ·  Talla: ' + it.talla + '\n' +
+           '   Marca: ' + it.marca + '  ·  Talla: ' + (it.tallaDetalle || it.talla) + '\n' +
            '   Precio: ' + money(it.precio) + ' MXN\n' +
            '   Clave: ' + it.id + '\n';
   }
