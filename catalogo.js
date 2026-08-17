@@ -239,7 +239,7 @@ window.CATALOGO = [
     categoria: "Shorts y Faldas",
     precio: 90,
     condicion: "Buen estado",
-    estado: "Disponible",
+    estado: "Vendido",
     descripcion: "Falda midi confeccionada en tul suave con forro interior opaco a tono. Pretina elástica plana y ancha en tono negro mate.",
     fotos: ["falda-tul-negro.jpg"]
   }
