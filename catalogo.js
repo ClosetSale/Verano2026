@@ -242,6 +242,92 @@ window.CATALOGO = [
     estado: "Vendido",
     descripcion: "Falda midi confeccionada en tul suave con forro interior opaco a tono. Pretina elástica plana y ancha en tono negro mate.",
     fotos: ["falda-tul-negro.jpg"]
+  },
+  {
+    id: "top-negro-canale",
+    nombre: "Top corto negro de canalé con espalda abierta",
+    marca: "Cuidado con el perro",
+    talla: "ECH",
+    categoria: "Blusas y Tops",
+    precio: 30,
+    condicion: "Buen estado",
+    estado: "Disponible",
+    descripcion: "Top corto de manga corta en color negro liso, confeccionado en tejido de canalé elástico. Escote en pico (V) al frente con diseño de espalda abierta / escotada.",
+    fotos: ["top-negro-canale.jpg"]
+  },
+  {
+    id: "chaleco-bohemio",
+    nombre: "Chaleco bohemio de jacquard con pompones",
+    marca: "Sin marca",
+    talla: "CH",
+    tallaDetalle: "CH / M",
+    categoria: "Chaquetas y Sacos",
+    precio: 60,
+    condicion: "Buen estado",
+    estado: "Disponible",
+    descripcion: "Chaleco forrado corto estilo bohemio y artesanal, confeccionado en tejido tipo tapicería / jacquard con motivos geométricos y tribales, con pompones en la orilla.\n\nPresenta ligeros hilos sueltos puntuales en la trama: puedes verlos de cerca en la segunda y tercera foto.",
+    fotos: ["chaleco-bohemio-1.jpg", "chaleco-bohemio-2.jpg", "chaleco-bohemio-3.jpg"]
+  },
+  {
+    id: "short-rayas-rojas",
+    nombre: "Short veraniego de rayas rojas y blancas",
+    marca: "EXX",
+    talla: "CH",
+    categoria: "Shorts y Faldas",
+    precio: 30,
+    condicion: "Buen estado",
+    estado: "Disponible",
+    descripcion: "Short casual veraniego a rayas rojas y blancas, con botón a contraste y bolsillos delanteros.",
+    fotos: ["short-rayas-rojas.jpg"]
+  },
+  {
+    id: "camiseta-tirantes-negra",
+    nombre: "Camiseta de tirantes negra con tirantes crema",
+    marca: "Vertiche",
+    talla: "CH",
+    categoria: "Blusas y Tops",
+    precio: 30,
+    condicion: "Excelente estado",
+    estado: "Disponible",
+    descripcion: "Camiseta básica de tirantes en color negro liso con tirantes planos en tono blanco marfil / crema a contraste.",
+    fotos: ["camiseta-tirantes-negra.jpg"]
+  },
+  {
+    id: "top-negro-lino",
+    nombre: "Top negro de tejido ligero con botones",
+    marca: "Boska",
+    talla: "CH",
+    tallaDetalle: "CH / M",
+    categoria: "Blusas y Tops",
+    precio: 50,
+    condicion: "Excelente estado",
+    estado: "Disponible",
+    descripcion: "Top fresco en color negro sólido, confeccionado en un tejido ligero con textura natural (estilo lino/algodón), ideal para climas cálidos y looks veraniegos atemporales. Botonadura al frente y tirantes ajustables.",
+    fotos: ["top-negro-lino.jpg"]
+  },
+  {
+    id: "vestido-saten-lila",
+    nombre: "Vestido largo de satén lila",
+    marca: "Metrópolis",
+    talla: "CH",
+    categoria: "Vestidos",
+    precio: 130,
+    condicion: "Como nuevo (1 o 2 usos)",
+    estado: "Disponible",
+    descripcion: "Vestido largo/midi de fiesta, confeccionado en satén en tono lila con brillo sutil. Abertura frontal/lateral pronunciada en la parte inferior del lado izquierdo.",
+    fotos: ["vestido-saten-lila.jpg"]
+  },
+  {
+    id: "set-beige-retro",
+    nombre: "Set coordinado beige de estampado retro",
+    marca: "Shein",
+    talla: "CH",
+    categoria: "Otros",
+    precio: 100,
+    condicion: "Sin uso",
+    estado: "Disponible",
+    descripcion: "Set coordinado en tono beige cálido y café, con estampado micro-geométrico de estilo retro. El top es cruzado con cuello solapa y el pantalón de pierna ancha.\n\nLa tercera foto es ilustrativa, para que veas cómo se ve puesto.",
+    fotos: ["set-beige-1.jpg", "set-beige-2.jpg", "set-beige-3.jpg"]
   }
 ];
 
